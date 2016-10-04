@@ -35,5 +35,18 @@ You can use Groovy to specify settings for swagger-maven-plugin
 
     mavenTask.execute()
 ```
+However there is a small trick for adding into classpath all required libs and compiled classes which will be used by swagger-maven-plagin.    
+The following code shows how to add swagger-maven-plugin to the gradle script and how to add a reference to classes to be scanned by swagger plugin.
+```groovy
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 
+    dependencies {
+        classpath files(project(':swagger-maven-example').configurations['runtime'].files)
+        classpath files(project(':swagger-maven-example').sourceSets['main'].output.classesDir)
+    }
+}
+```
 
