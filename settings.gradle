@@ -1,0 +1,4 @@
+rootProject.name = 'swagger-gradle-example'
+
+include ':swagger-maven-example'
+include ':generate-doc'
