@@ -49,4 +49,18 @@ buildscript {
     }
 }
 ```
+## Gradle task
+You can create a simple gradle task with custom GroovyClassLoader that loads all classes and executes swagger.    
+```groovy
+task swagger(dependsOn: ':swagger-maven-example:build') << {
+    println '>> Swagger GenDoc...'
 
+    // a trick to have all needed classes in the classpath
+    def customClass = new GroovyClassLoader()
+
+    buildscript.configurations.classpath.each {
+        // println it.toURI().toURL()
+        customClass.addURL(it.toURI().toURL())
+    }
+    ...
+```
