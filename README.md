@@ -1,5 +1,11 @@
 # swagger-gradle-example
-A very easy way how to use swagger-maven-plugin in gradle projects.
+A very easy way how to use swagger-maven-plugin in gradle projects. The idea is to reuse existing swagger-maven-plugin without any new gradle plugins and classes.    
+
+## Projects
+There 2 sub projects:    
+* generate-doc to generate docs for Rest API.    
+* A link to original [swagger-maven-example](https://github.com/kongchen/swagger-maven-example) just to have sources for scanning swagger annotations.    
+
 ## How to execute swagger-maven-plugin
 You can use Groovy to specify settings for swagger-maven-plugin
 ```groovy
