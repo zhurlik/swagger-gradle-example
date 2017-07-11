@@ -9,6 +9,7 @@ buildscript {
         mavenCentral()
     }
 
+    // to be able to use swagger
     dependencies {
         classpath group: 'io.swagger', name: 'swagger-core', version: '1.5.10'
         classpath group: 'com.github.kongchen', name: 'swagger-maven-plugin', version: '3.1.4'
@@ -22,7 +23,7 @@ task swagger(dependsOn: ':swagger-maven-example:build') << {
     buildscript.classLoader.addURL project(':swagger-maven-example').sourceSets['main'].output.classesDir.toURI().toURL()
 
     // the same settings as in the swagger-maven-example/pom.xml
-    final ApiDocumentMojo mavenTask = Class.forName('com.github.kongchen.swagger.docgen.mavenplugin.ApiDocumentMojo',true, buildscript.classLoader).newInstance(
+    final ApiDocumentMojo mavenTask = Class.forName('com.github.kongchen.swagger.docgen.mavenplugin.ApiDocumentMojo', true, buildscript.classLoader).newInstance(
             apiSources: [
                     new ApiSource(
                             springmvc: false,
