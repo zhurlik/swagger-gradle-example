@@ -16,7 +16,7 @@ buildscript {
 }
 
 task swagger(dependsOn: ':swagger-maven-example:build') << {
-    println '>> Swagger GenDoc...'
+    logger.quiet '>> Swagger GenDoc...'
 
     // a trick to have all needed project classes in the classpath
     buildscript.classLoader.addURL project(':swagger-maven-example').sourceSets['main'].output.classesDir.toURI().toURL()
@@ -54,5 +54,5 @@ task swagger(dependsOn: ':swagger-maven-example:build') << {
 
     mavenTask.execute()
 
-    println '>> Swagger GenDoc task is completed'
+    logger.quiet '>> Swagger GenDoc task is completed'
 }
