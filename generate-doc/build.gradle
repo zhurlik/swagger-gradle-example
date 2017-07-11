@@ -10,24 +10,19 @@ buildscript {
     }
 
     dependencies {
-        classpath files(project(':swagger-maven-example').configurations['runtime'].files)
-        classpath files(project(':swagger-maven-example').sourceSets['main'].output.classesDir)
+        classpath group: 'io.swagger', name: 'swagger-core', version: '1.5.10'
+        classpath group: 'com.github.kongchen', name: 'swagger-maven-plugin', version: '3.1.4'
     }
 }
 
 task swagger(dependsOn: ':swagger-maven-example:build') << {
     println '>> Swagger GenDoc...'
 
-    // a trick to have all needed classes in the classpath
-    def customClass = new GroovyClassLoader()
-
-    buildscript.configurations.classpath.each {
-        // println it.toURI().toURL()
-        customClass.addURL(it.toURI().toURL())
-    }
+    // a trick to have all needed project classes in the classpath
+    buildscript.classLoader.addURL project(':swagger-maven-example').sourceSets['main'].output.classesDir.toURI().toURL()
 
     // the same settings as in the swagger-maven-example/pom.xml
-    final ApiDocumentMojo mavenTask = Class.forName('com.github.kongchen.swagger.docgen.mavenplugin.ApiDocumentMojo',true, customClass).newInstance(
+    final ApiDocumentMojo mavenTask = Class.forName('com.github.kongchen.swagger.docgen.mavenplugin.ApiDocumentMojo',true, buildscript.classLoader).newInstance(
             apiSources: [
                     new ApiSource(
                             springmvc: false,
