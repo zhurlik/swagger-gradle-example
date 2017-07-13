@@ -1,3 +1,6 @@
+# This example has been converted to [gradle-swagger-plugin](https://plugins.gradle.org/plugin/com.github.zhurlik.swagger)
+https://github.com/zhurlik/gradle-swagger-plugin
+
 # swagger-gradle-example
 A very easy way how to use swagger-maven-plugin in gradle projects. The idea is to reuse existing swagger-maven-plugin without any new gradle plugins and classes.    
 
