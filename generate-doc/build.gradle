@@ -13,6 +13,13 @@ buildscript {
     dependencies {
         classpath group: 'io.swagger', name: 'swagger-core', version: '1.5.10'
         classpath group: 'com.github.kongchen', name: 'swagger-maven-plugin', version: '3.1.4'
+
+        // java.xml.bind (JAXB) - REMOVED in JAVA 11
+        if (JavaVersion.current() == JavaVersion.VERSION_11) {
+            classpath group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+            classpath group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
+            classpath group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.5'
+        }
     }
 }
 
